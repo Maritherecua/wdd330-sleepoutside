@@ -12,17 +12,17 @@ export function renderPlaylist(songs) {
     }
 
     songs.forEach((song) => {
-        // Clone the template content
         const card = template.content.cloneNode(true);
+        const image = card.querySelector(".track-thumbnail");
 
-        // Populate the cloned card with song data
         card.querySelector(".track-title").textContent = song.title;
         card.querySelector(".track-artist").textContent = song.artist;
 
         if (song.thumbnail) {
-            const img = card.querySelector(".track-thumbnail");
-            img.src = song.thumbnail;
-            img.alt = `${song.title} thumbnail`;
+            image.src = song.thumbnail;
+            image.alt = `${song.title} album artwork`;
+        } else {
+            image.remove();
         }
 
         playlistSongs.appendChild(card);

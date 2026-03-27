@@ -29,9 +29,15 @@ function normalizeMood(mood) {
 function getFallbackSongs(mood) {
     const key = normalizeMood(mood);
     if (FALLBACK_PLAYLISTS[key]) {
-        return FALLBACK_PLAYLISTS[key];
+        return FALLBACK_PLAYLISTS[key].map((song) => ({
+            ...song,
+            thumbnail: null
+        }));
     }
-    return FALLBACK_PLAYLISTS.happy;
+    return FALLBACK_PLAYLISTS.happy.map((song) => ({
+        ...song,
+        thumbnail: null
+    }));
 }
 
 export async function fetchSongsByMood(mood, limit = 10) {
@@ -48,7 +54,8 @@ export async function fetchSongsByMood(mood, limit = 10) {
         console.log("iTunes API raw JSON:", data);
         const songs = (data.results || []).map((item) => ({
             title: item.trackName,
-            artist: item.artistName
+            artist: item.artistName,
+            thumbnail: item.artworkUrl100 || null
         }));
 
         if (songs.length === 0) {
