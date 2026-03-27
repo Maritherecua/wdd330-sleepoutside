@@ -1,0 +1,51 @@
+<!-- Playlist Generator HTML This app allows users to generate playlists based on their mood and preferences.Uses
+ mood-selection buttons(happy,sad,energetic,relaxed)or a dropdown menu with emojis, and a generate playlist button.
+ It uses Spotify's API and TheAudioDB API to fetch songs and create playlists based on the selected mood. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playlist Generator</title>
+    <meta name="author" content="Maria Arroyo">
+    <meta name="description" content="Generate playlists based on your mood and preferences.">
+    <link rel="stylesheet" href="styles.css">
+
+
+</head>
+
+<body>
+    <header>
+        <h1>Playlist Generator</h1>
+        <p>Select your mood and generate a playlist!</p>
+    </header>
+    <main>
+        <section id="mood-selection">
+            <h2>Select Your Mood</h2>
+            <button class="mood-btn" data-mood="happy">😊 Happy</button>
+            <button class="mood-btn" data-mood="sad">😢 Sad</button>
+            <button class="mood-btn" data-mood="energetic">⚡ Energetic</button>
+            <button class="mood-btn" data-mood="relaxed">😌 Relaxed</button>
+            <button class="mood-btn" data-mood="custom">🎵 Custom</button>
+            <!--user input for custom mood-->
+            <input type="text" id="custom-mood" placeholder="Enter your mood">
+            <p>Or select your mood from the dropdown:</p>
+            <select id="mood-dropdown">
+                <option value="happy">😊 Happy</option>
+                <option value="sad">😢 Sad</option>
+                <option value="energetic">⚡ Energetic</option>
+                <option value="relaxed">😌 Relaxed</option>
+                <option value="custom">🎵 Custom</option>
+            </select>
+            <button id="generate-playlist">Generate Playlist</button>
+        </section>
+        <section id="playlist">
+            <h2>Your Playlist</h2>
+            <ul id="playlist-songs">
+                <!-- Songs will be dynamically added here -->
+            </ul>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
