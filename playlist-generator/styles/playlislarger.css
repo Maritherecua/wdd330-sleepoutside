@@ -1,0 +1,72 @@
+/* Container for the mood selection grid */
+.mood-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Base style for a Mood Card */
+.mood-card {
+  width: 150px;
+  height: 150px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  font-weight: bold;
+  color: white;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+}
+
+.mood-card:hover {  
+  transform: scale(1.05);
+}
+
+/* Specific Mood Colors */
+.energetic { background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%); }
+.melancholy { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+.chill { background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%); }
+/*base style for buttons*/
+    .mood-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+  transition: transform 0.2s ease;
+}
+
+.mood-btn:hover {
+  transform: scale(1.05);
+}
+
+/*.mood-card.energetic {
+  background-color: #ff6f61;
+}
+
+.mood-card.melancholy {
+  background-color: #6b5b95;
+}
+
+.mood-card.chill {
+  background-color: #88b04b;
+}
+
+.mood-card.happy {
+  background-color: #f7dc6f;
+}
+
+.mood-card.sad {
+  background-color: #5dade2;
+}
+
+.mood-card.relaxed {
+  background-color: #a569bd;
+}*/

@@ -1,3 +1,5 @@
+/*handles the state of the selected mood and filters*/
+    /*handles the state of the selected mood and filters*/  
 import { fetchSongsByMood } from "./apiClient.js";
 
 document.addEventListener("DOMContentLoaded", () => {
