@@ -45,6 +45,7 @@ export async function fetchSongsByMood(mood, limit = 10) {
         }
 
         const data = await response.json();
+        console.log("iTunes API raw JSON:", data);
         const songs = (data.results || []).map((item) => ({
             title: item.trackName,
             artist: item.artistName

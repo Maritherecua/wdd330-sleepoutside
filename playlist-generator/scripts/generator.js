@@ -1,6 +1,7 @@
 /*handles the state of the selected mood and filters*/
-    /*handles the state of the selected mood and filters*/  
+/*handles the state of the selected mood and filters*/
 import { fetchSongsByMood } from "./apiClient.js";
+import { renderPlaylist } from "./playlistrender.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     const moodButtons = document.querySelectorAll(".mood-btn");
@@ -33,13 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         try {
             const songs = await fetchSongsByMood(mood);
-            playlistSongs.innerHTML = "";
-
-            songs.forEach((song) => {
-                const li = document.createElement("li");
-                li.textContent = `${song.title} by ${song.artist}`;
-                playlistSongs.appendChild(li);
-            });
+            renderPlaylist(songs);
         } catch (error) {
             playlistSongs.innerHTML = "<li>Could not load songs. Please try again.</li>";
         }
