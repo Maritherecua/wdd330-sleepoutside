@@ -3,6 +3,7 @@
  It uses Spotify's API and TheAudioDB API to fetch songs and create playlists based on the selected mood. -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,6 +31,7 @@
             <!--user input for custom mood-->
             <input type="text" id="custom-mood" placeholder="Enter your mood">
             <p>Or select your mood from the dropdown:</p>
+            <label for="mood-dropdown">Mood</label>
             <select id="mood-dropdown">
                 <option value="happy">😊 Happy</option>
                 <option value="sad">😢 Sad</option>
@@ -46,6 +48,7 @@
             </ul>
         </section>
     </main>
-    <script src="script.js"></script>
+    <script type="module" src="scripts/generator.js"></script>
 </body>
+
 </html>
