@@ -1,11 +1,11 @@
 /*style items differently based on their data-category or data-price*/
 li[data-category="fruit"] {
-    background-color: yellow;
+  background-color: yellow;
 }
 
 li[data-category="vegetable"] {
-    background-color: lightgreen;
+  background-color: lightgreen;
 }
 li[data-category="dairy"] {
-    background-color: lightblue;
+  background-color: lightblue;
 }

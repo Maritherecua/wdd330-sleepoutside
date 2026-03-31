@@ -3,9 +3,9 @@
 */
 
 export function saveMoodToLocalStorage(mood) {
-    localStorage.setItem("selectedMood", mood);
+  localStorage.setItem("selectedMood", mood);
 }
 
 export function getMoodFromLocalStorage() {
-    return localStorage.getItem("selectedMood") || "happy";
+  return localStorage.getItem("selectedMood") || "happy";
 }
