@@ -1,5 +1,70 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  scroll-snap-type: y mandatory;
+}
+
+#mood-selection,
+#playlist {
+  min-height: 100vh;
+  padding: 2rem 1.25rem;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
 header {
   padding: 1rem;
+}
+
+#playlist {
+  scroll-margin-top: 1rem;
+}
+
+#playlist-songs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.track-card {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 0.9rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.track-thumbnail {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.track-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.track-title {
+  font-weight: 700;
+}
+
+.track-artist {
+  opacity: 0.8;
 }
 
 .header-top {
@@ -21,6 +86,7 @@ header {
 }
 
 .site-logo {
+  display: block;
   justify-self: end;
   width: 80px;
   height: 80px;
@@ -63,6 +129,10 @@ header {
   .main-nav {
     gap: 1rem;
     flex-wrap: wrap;
+  }
+
+  #playlist-songs {
+    grid-template-columns: 1fr;
   }
 }
 

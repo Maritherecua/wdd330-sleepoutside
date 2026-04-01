@@ -15,30 +15,30 @@
 </head>
 
 <body>
-  <header>
-    <div class="header-top">
-      <div class="header-spacer" aria-hidden="true"></div>
-      <h1>Mood Tunes</h1>
-      <img class="site-logo" src="images/logo.webp" alt="Mood Tunes logo" width="80" height="80" />
-    </div>
-    <nav aria-label="Main navigation">
-      <ul class="main-nav">
-        <li><a href="#">Home</a></li>
-        <li><a href="#playlist">Playlist</a></li>
-        <li><a href="#">Profile/Favorites</a></li>
-      </ul>
-    </nav>
-    <p>How are you feeling today?</p>
-    <div class="mood-grid">
-      <div class="mood-card energetic" data-mood="energetic">Energetic</div>
-      <div class="mood-card melancholy" data-mood="melancholy">
-        Melancholy
-      </div>
-      <div class="mood-card chill" data-mood="chill">Chill</div>
-    </div>
-  </header>
   <main>
     <section id="mood-selection">
+      <header>
+        <div class="header-top">
+          <div class="header-spacer" aria-hidden="true"></div>
+          <h1>Mood Tunes</h1>
+          <img class="site-logo" src="images/logo.webp" alt="Mood Tunes logo" width="80" height="80" />
+        </div>
+        <nav aria-label="Main navigation">
+          <ul class="main-nav">
+            <li><a href="#mood-selection">Home</a></li>
+            <li><a href="#playlist">Playlist</a></li>
+            <li><a href="#">Profile/Favorites</a></li>
+          </ul>
+        </nav>
+        <p>How are you feeling today?</p>
+        <div class="mood-grid">
+          <div class="mood-card energetic" data-mood="energetic">Energetic</div>
+          <div class="mood-card melancholy" data-mood="melancholy">
+            Melancholy
+          </div>
+          <div class="mood-card chill" data-mood="chill">Chill</div>
+        </div>
+      </header>
       <h2>Select Your Mood</h2>
       <button class="mood-btn" data-mood="happy">😊 Happy</button>
       <button class="mood-btn" data-mood="sad">😢 Sad</button>
