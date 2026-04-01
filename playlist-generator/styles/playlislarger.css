@@ -180,6 +180,7 @@ header {
 /*base style for buttons*/
 .mood-btn {
   padding: 10px 20px;
+  background-color: #ff6f61;
   border: none;
   border-radius: 10px;
   cursor: pointer;
