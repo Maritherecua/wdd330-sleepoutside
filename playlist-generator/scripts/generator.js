@@ -34,6 +34,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function generatePlaylist(mood) {
     playlistSongs.innerHTML = "<li>Loading songs...</li>";
+    const playlistSection = document.getElementById("playlist");
+    const playlistHeading = document.getElementById("playlist-heading");
+    const moodLabel = mood.charAt(0).toUpperCase() + mood.slice(1);
+    playlistSection.dataset.mood = mood;
+    playlistHeading.textContent = `Your ${moodLabel} Playlist`;
 
     try {
       const songs = await fetchSongsByMood(mood);

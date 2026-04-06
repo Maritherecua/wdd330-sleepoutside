@@ -26,6 +26,47 @@ header {
 
 #playlist {
   scroll-margin-top: 1rem;
+  transition: background 0.5s ease, color 0.5s ease;
+}
+
+#playlist[data-mood="happy"] {
+  background: linear-gradient(160deg, #fef08a, #fb923c);
+  color: #422006;
+}
+
+#playlist[data-mood="sad"] {
+  background: linear-gradient(160deg, #bfdbfe, #6366f1);
+  color: #1e1b4b;
+}
+
+#playlist[data-mood="energetic"] {
+  background: linear-gradient(160deg, #fdba74, #ef4444);
+  color: #450a0a;
+}
+
+#playlist[data-mood="relaxed"] {
+  background: linear-gradient(160deg, #a7f3d0, #34d399);
+  color: #064e3b;
+}
+
+#playlist[data-mood="productive"] {
+  background: linear-gradient(160deg, #bfdbfe, #6366f1);
+  color: #1e1b4b;
+}
+
+#playlist[data-mood="chill"] {
+  background: linear-gradient(160deg, #e0f2fe, #38bdf8);
+  color: #0c4a6e;
+}
+
+#playlist[data-mood="melancholy"] {
+  background: linear-gradient(160deg, #ddd6fe, #7c3aed);
+  color: #2e1065;
+}
+
+#playlist[data-mood="custom"] {
+  background: linear-gradient(160deg, #e2e8f0, #94a3b8);
+  color: #1e293b;
 }
 
 #playlist-songs {
