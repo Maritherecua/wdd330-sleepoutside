@@ -80,17 +80,31 @@ header {
   text-align: center;
 }
 
-.header-spacer {
-  width: 80px;
-  height: 80px;
-}
-
 .site-logo {
   display: block;
-  justify-self: end;
+  justify-self: start;
   width: 80px;
   height: 80px;
   object-fit: contain;
+}
+
+.profile-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  justify-self: end;
+  text-decoration: none;
+  color: inherit;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  opacity: 0.85;
+  transition: opacity 0.2s;
+}
+
+.profile-btn:hover {
+  opacity: 1;
 }
 
 .main-nav {
