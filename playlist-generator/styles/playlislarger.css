@@ -107,6 +107,29 @@ header {
   opacity: 1;
 }
 
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem 1.25rem 2rem;
+  gap: 2rem;
+}
+
+.hero h2 {
+  margin: 0;
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  line-height: 1.2;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.mood-card.productive {
+  background: linear-gradient(135deg, #3b82f6, #6366f1);
+  color: #fff;
+}
+
 .main-nav {
   display: flex;
   justify-content: center;
