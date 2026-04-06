@@ -171,6 +171,58 @@ header {
   color: #fff;
 }
 
+.action-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 1.25rem 0 0.5rem;
+}
+
+.action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1.1rem;
+  border: 2px solid currentColor;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.25);
+  color: inherit;
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  backdrop-filter: blur(4px);
+  transition: background 0.2s, transform 0.15s;
+}
+
+.action-btn:hover {
+  background: rgba(255, 255, 255, 0.45);
+  transform: translateY(-1px);
+}
+
+.action-btn:active {
+  transform: translateY(0);
+}
+
+.action-btn--spotify {
+  background: #1db954;
+  border-color: #1db954;
+  color: #fff;
+}
+
+.action-btn--spotify:hover {
+  background: #17a349;
+  border-color: #17a349;
+}
+
+.action-feedback {
+  min-height: 1.25rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  opacity: 0.85;
+  margin: 0 0 1rem;
+}
+
 .main-nav {
   display: flex;
   justify-content: center;

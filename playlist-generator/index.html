@@ -72,6 +72,36 @@
     </section>
     <section id="playlist">
       <h2 id="playlist-heading">Your Playlist</h2>
+      <div class="action-bar">
+        <button id="save-favorites-btn" class="action-btn" aria-label="Save to Favorites">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
+          </svg>
+          Save to Favorites
+        </button>
+        <a id="spotify-btn" class="action-btn action-btn--spotify" href="https://open.spotify.com" target="_blank"
+          rel="noopener noreferrer" aria-label="Open Spotify">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"
+            aria-hidden="true">
+            <path
+              d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.586 14.424a.623.623 0 0 1-.857.207c-2.348-1.435-5.304-1.76-8.785-.964a.623.623 0 1 1-.277-1.215c3.809-.87 7.077-.496 9.712 1.115a.623.623 0 0 1 .207.857zm1.223-2.722a.78.78 0 0 1-1.072.257C14.1 12.226 10.818 11.8 7.8 12.7a.78.78 0 0 1-.964-.52.782.782 0 0 1 .52-.965c3.453-.99 7.146-.51 9.897 1.215a.78.78 0 0 1 .256 1.072zm.105-2.835C15.12 9.007 11.1 8.872 8.167 9.741a.937.937 0 1 1-.543-1.793c3.372-.982 8.054-.838 11.232 1.218a.937.937 0 0 1-.942 1.621z" />
+          </svg>
+          Save to Spotify
+        </a>
+        <button id="share-btn" class="action-btn" aria-label="Share Playlist">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="18" cy="5" r="3" />
+            <circle cx="6" cy="12" r="3" />
+            <circle cx="18" cy="19" r="3" />
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+          </svg>
+          Share
+        </button>
+      </div>
+      <p id="action-feedback" class="action-feedback" aria-live="polite"></p>
       <ul id="playlist-songs">
         <!-- Songs will be dynamically added here -->
       </ul>

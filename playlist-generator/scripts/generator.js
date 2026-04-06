@@ -2,6 +2,7 @@
 /*handles the state of the selected mood and filters*/
 import { fetchSongsByMood } from "./apiClient.js";
 import { renderPlaylist } from "./playlistrender.js";
+import { getFavorites, addFavorite } from "./ls-helpers.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const moodButtons = document.querySelectorAll(".mood-btn");
@@ -9,8 +10,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const generateButton = document.getElementById("generate-playlist");
   const playlistSongs = document.getElementById("playlist-songs");
   const customMoodInput = document.getElementById("custom-mood");
+  const saveFavoritesBtn = document.getElementById("save-favorites-btn");
+  const shareBtn = document.getElementById("share-btn");
+  const actionFeedback = document.getElementById("action-feedback");
 
   let selectedMood = "happy";
+  let currentPlaylistName = "";
+
+  function showFeedback(msg) {
+    actionFeedback.textContent = msg;
+    setTimeout(() => { actionFeedback.textContent = ""; }, 3000);
+  }
 
   moodButtons.forEach((button) => {
     button.addEventListener("click", () => {
@@ -39,6 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const moodLabel = mood.charAt(0).toUpperCase() + mood.slice(1);
     playlistSection.dataset.mood = mood;
     playlistHeading.textContent = `Your ${moodLabel} Playlist`;
+    currentPlaylistName = `Your ${moodLabel} Playlist`;
 
     try {
       const songs = await fetchSongsByMood(mood);
@@ -48,4 +59,35 @@ document.addEventListener("DOMContentLoaded", () => {
         "<li>Could not load songs. Please try again.</li>";
     }
   }
+
+  saveFavoritesBtn.addEventListener("click", () => {
+    if (!currentPlaylistName) {
+      showFeedback("Generate a playlist first!");
+      return;
+    }
+    addFavorite({ name: currentPlaylistName, mood: selectedMood, savedAt: new Date().toISOString() });
+    showFeedback("Saved to Favorites!");
+  });
+
+  shareBtn.addEventListener("click", async () => {
+    if (!currentPlaylistName) {
+      showFeedback("Generate a playlist first!");
+      return;
+    }
+    const shareData = {
+      title: currentPlaylistName,
+      text: `Check out my ${currentPlaylistName} on Mood Tunes!`,
+      url: window.location.href,
+    };
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+      } catch {
+        // user cancelled — no action needed
+      }
+    } else {
+      await navigator.clipboard.writeText(window.location.href);
+      showFeedback("Link copied to clipboard!");
+    }
+  });
 });
