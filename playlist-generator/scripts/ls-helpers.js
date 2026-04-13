@@ -19,3 +19,14 @@ export function addFavorite(song) {
     console.log('Added to favorites:', song);
     return true;
 }
+
+export function removeFavoriteById(id) {
+    const favorites = getFavorites();
+    const updated = favorites.filter((item) => item.id !== id);
+    localStorage.setItem(FAVORITES_KEY, JSON.stringify(updated));
+    return updated;
+}
+
+export function clearFavorites() {
+    localStorage.removeItem(FAVORITES_KEY);
+}

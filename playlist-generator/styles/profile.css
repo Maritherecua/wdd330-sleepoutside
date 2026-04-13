@@ -1,0 +1,177 @@
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+    background: radial-gradient(circle at top, #ecfeff 0%, #c7d2fe 42%, #e9d5ff 100%);
+    color: #1f2937;
+}
+
+.profile-page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem 3rem;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.profile-header h1 {
+    margin: 0;
+    font-size: clamp(1.5rem, 3.5vw, 2.3rem);
+}
+
+.back-link {
+    text-decoration: none;
+    color: #1f2937;
+    font-weight: 700;
+    border: 1px solid #374151;
+    border-radius: 999px;
+    padding: 0.4rem 0.9rem;
+    background: rgba(255, 255, 255, 0.7);
+}
+
+.favorites-panel {
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(31, 41, 55, 0.12);
+    border-radius: 16px;
+    padding: 1rem;
+}
+
+.panel-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.panel-top h2 {
+    margin: 0;
+}
+
+.clear-btn {
+    border: 1px solid #1f2937;
+    border-radius: 999px;
+    background: #fff;
+    color: #1f2937;
+    font-weight: 700;
+    padding: 0.4rem 0.9rem;
+    cursor: pointer;
+}
+
+.clear-btn:hover {
+    background: #f3f4f6;
+}
+
+.favorites-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 0.9rem;
+}
+
+.filter-btn {
+    border: 1px solid #4b5563;
+    border-radius: 999px;
+    background: #fff;
+    color: #1f2937;
+    font-weight: 700;
+    padding: 0.35rem 0.8rem;
+    cursor: pointer;
+}
+
+.filter-btn:hover {
+    background: #f3f4f6;
+}
+
+.filter-btn.is-active {
+    background: #1f2937;
+    color: #fff;
+    border-color: #1f2937;
+}
+
+.favorites-search {
+    flex: 1;
+    min-width: 220px;
+    border: 1px solid #9ca3af;
+    border-radius: 999px;
+    padding: 0.45rem 0.85rem;
+    background: #fff;
+}
+
+.favorites-count {
+    margin: 0.75rem 0;
+    font-weight: 600;
+}
+
+.favorites-empty {
+    margin: 1rem 0;
+    font-style: italic;
+}
+
+.favorites-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.8rem;
+}
+
+.favorite-item {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 0.75rem;
+    align-items: center;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 0.7rem;
+}
+
+.favorite-thumb {
+    width: 56px;
+    height: 56px;
+    border-radius: 10px;
+    object-fit: cover;
+    background: #e5e7eb;
+}
+
+.favorite-title {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.favorite-meta {
+    margin: 0.25rem 0 0;
+    font-size: 0.85rem;
+    opacity: 0.8;
+}
+
+.remove-btn {
+    border: 1px solid #ef4444;
+    background: #fee2e2;
+    color: #991b1b;
+    border-radius: 999px;
+    padding: 0.35rem 0.8rem;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.remove-btn:hover {
+    background: #fecaca;
+}
+
+@media (max-width: 640px) {
+    .favorites-search {
+        width: 100%;
+    }
+
+    .favorite-item {
+        grid-template-columns: 1fr;
+        justify-items: start;
+    }
+}

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile & Favorites | Mood Tunes</title>
+    <meta name="description" content="View your saved playlists and songs." />
+    <link rel="stylesheet" href="styles/playlistsmaller.css" />
+    <link rel="stylesheet" href="styles/profile.css" />
+</head>
+
+<body>
+    <main class="profile-page">
+        <header class="profile-header">
+            <a href="index.html" class="back-link" aria-label="Back to playlist generator">Back</a>
+            <h1>Profile & Favorites</h1>
+        </header>
+
+        <section class="favorites-panel" aria-labelledby="favorites-heading">
+            <div class="panel-top">
+                <h2 id="favorites-heading">Saved Items</h2>
+                <button id="clear-favorites-btn" class="clear-btn" type="button">Clear All</button>
+            </div>
+
+            <div class="favorites-controls" role="group" aria-label="Filter favorites">
+                <button id="filter-all" class="filter-btn is-active" type="button" data-filter="all">All</button>
+                <button id="filter-tracks" class="filter-btn" type="button" data-filter="track">Tracks</button>
+                <button id="filter-playlists" class="filter-btn" type="button" data-filter="playlist">Playlists</button>
+                <input id="favorites-search" class="favorites-search" type="search"
+                    placeholder="Search title, artist, or mood" aria-label="Search favorites" />
+            </div>
+
+            <p id="favorites-count" class="favorites-count"></p>
+            <p id="favorites-empty" class="favorites-empty" hidden>No favorites yet. Save a playlist or track from the
+                main screen.</p>
+            <ul id="favorites-list" class="favorites-list"></ul>
+        </section>
+    </main>
+
+    <script type="module" src="scripts/favorites.js"></script>
+</body>
+
+</html>
