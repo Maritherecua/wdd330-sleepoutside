@@ -14,9 +14,17 @@ export function renderPlaylist(songs) {
   songs.forEach((song) => {
     const card = template.content.cloneNode(true);
     const image = card.querySelector(".track-thumbnail");
+    const saveButton = card.querySelector(".track-save-btn");
 
     card.querySelector(".track-title").textContent = song.title;
     card.querySelector(".track-artist").textContent = song.artist;
+
+    saveButton.addEventListener("click", () => {
+      const customEvent = new CustomEvent("track:save", {
+        detail: song,
+      });
+      document.dispatchEvent(customEvent);
+    });
 
     if (song.thumbnail) {
       image.src = song.thumbnail;

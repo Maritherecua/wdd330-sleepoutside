@@ -87,6 +87,22 @@ header {
   background: rgba(255, 255, 255, 0.8);
 }
 
+.track-save-btn {
+  margin-left: auto;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.6);
+  color: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.35rem 0.8rem;
+  cursor: pointer;
+}
+
+.track-save-btn:hover {
+  background: rgba(255, 255, 255, 0.9);
+}
+
 .track-thumbnail {
   width: 64px;
   height: 64px;
@@ -191,6 +207,7 @@ header {
   font-weight: 700;
   cursor: pointer;
   text-decoration: none;
+  -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
   transition: background 0.2s, transform 0.15s;
 }

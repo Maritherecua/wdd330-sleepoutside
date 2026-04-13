@@ -2,7 +2,7 @@
 /*handles the state of the selected mood and filters*/
 import { fetchSongsByMood } from "./apiClient.js";
 import { renderPlaylist } from "./playlistrender.js";
-import { getFavorites, addFavorite } from "./ls-helpers.js";
+import { addFavorite } from "./ls-helpers.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const moodButtons = document.querySelectorAll(".mood-btn");
@@ -16,6 +16,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let selectedMood = "happy";
   let currentPlaylistName = "";
+
+  document.addEventListener("track:save", (event) => {
+    const song = event.detail;
+    if (!song) {
+      showFeedback("Could not save this track.");
+      return;
+    }
+
+    const wasSaved = addFavorite({
+      id: `${song.title}-${song.artist}`,
+      title: song.title,
+      artist: song.artist,
+      thumbnail: song.thumbnail || null,
+      mood: selectedMood,
+      playlist: currentPlaylistName,
+      savedAt: new Date().toISOString(),
+    });
+    showFeedback(
+      wasSaved
+        ? `Saved ${song.title} to Favorites!`
+        : `${song.title} is already in Favorites.`
+    );
+  });
 
   function showFeedback(msg) {
     actionFeedback.textContent = msg;
@@ -65,8 +88,14 @@ document.addEventListener("DOMContentLoaded", () => {
       showFeedback("Generate a playlist first!");
       return;
     }
-    addFavorite({ name: currentPlaylistName, mood: selectedMood, savedAt: new Date().toISOString() });
-    showFeedback("Saved to Favorites!");
+    const wasSaved = addFavorite({
+      id: `playlist-${selectedMood}-${currentPlaylistName}`,
+      type: "playlist",
+      name: currentPlaylistName,
+      mood: selectedMood,
+      savedAt: new Date().toISOString(),
+    });
+    showFeedback(wasSaved ? "Saved to Favorites!" : "Playlist is already in Favorites.");
   });
 
   shareBtn.addEventListener("click", async () => {
