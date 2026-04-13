@@ -1,5 +1,4 @@
-/*handles the state of the selected mood and filters*/
-/*handles the state of the selected mood and filters*/
+/* Controls mood selection, playlist generation, and save/share actions. */
 import { fetchSongsByMood } from "./apiClient.js";
 import { renderPlaylist } from "./playlistrender.js";
 import { addFavorite } from "./ls-helpers.js";

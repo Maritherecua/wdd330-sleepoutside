@@ -1,6 +1,6 @@
-<!-- Playlist Generator HTML This app allows users to generate playlists based on their mood and preferences.Uses
- mood-selection buttons(happy,sad,energetic,relaxed)or a dropdown menu with emojis, and a generate playlist button.
- It uses Spotify's API and TheAudioDB API to fetch songs and create playlists based on the selected mood. -->
+<!-- Playlist Generator HTML This app allows users to generate playlists based on their mood and preferences. Uses
+ mood-selection buttons and a dropdown menu, then combines iTunes Search API results with TheAudioDB metadata
+ to enrich playlist tracks with album and genre information. -->
 <!doctype html>
 <html lang="en">
 
@@ -115,6 +115,7 @@
       <div class="track-info">
         <span class="track-title"></span>
         <span class="track-artist"></span>
+        <span class="track-meta"></span>
       </div>
       <button class="track-save-btn" type="button" aria-label="Add track to favorites">Add to Favorites</button>
     </li>

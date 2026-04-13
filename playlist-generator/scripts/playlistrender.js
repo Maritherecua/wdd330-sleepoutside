@@ -15,9 +15,11 @@ export function renderPlaylist(songs) {
     const card = template.content.cloneNode(true);
     const image = card.querySelector(".track-thumbnail");
     const saveButton = card.querySelector(".track-save-btn");
+    const meta = card.querySelector(".track-meta");
 
     card.querySelector(".track-title").textContent = song.title;
     card.querySelector(".track-artist").textContent = song.artist;
+    meta.textContent = [song.album, song.genre].filter(Boolean).join(" • ");
 
     saveButton.addEventListener("click", () => {
       const customEvent = new CustomEvent("track:save", {
@@ -25,6 +27,10 @@ export function renderPlaylist(songs) {
       });
       document.dispatchEvent(customEvent);
     });
+
+    if (!meta.textContent) {
+      meta.remove();
+    }
 
     if (song.thumbnail) {
       image.src = song.thumbnail;
