@@ -189,7 +189,8 @@ header {
 
 .mood-card.productive {
   background: linear-gradient(135deg, #3b82f6, #6366f1);
-  color: #fff;
+  color: #102040;
+  text-shadow: none;
 }
 
 .action-bar {
@@ -333,6 +334,7 @@ header {
   color: #0c2d4a;
   text-shadow: none;
 }
+
 .productive {
   background: linear-gradient(135deg, #3949ab, #1a237e);
   color: #fff;
