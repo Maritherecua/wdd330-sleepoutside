@@ -319,7 +319,7 @@ header {
 /* Specific Mood Colors */
 .energetic {
   background: linear-gradient(to bottom, #d81b60, #880e4f);
-  color: #ffffff;
+  color: white;
   text-shadow: none;
 }
 
