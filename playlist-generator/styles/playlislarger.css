@@ -335,11 +335,6 @@ header {
   text-shadow: none;
 }
 
-.productive {
-  background: linear-gradient(135deg, #3949ab, #1a237e);
-  color: #fff;
-}
-
 /*base style for buttons*/
 .mood-btn {
   padding: 10px 20px;
