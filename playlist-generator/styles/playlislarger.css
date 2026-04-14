@@ -189,7 +189,7 @@ header {
 
 .mood-card.productive {
   background: linear-gradient(135deg, #3b82f6, #6366f1);
-  color: #102040;
+  color: #000;
   text-shadow: none;
 }
 
