@@ -333,6 +333,10 @@ header {
   color: #0c2d4a;
   text-shadow: none;
 }
+.productive {
+  background: linear-gradient(135deg, #3949ab, #1a237e);
+  color: #fff;
+}
 
 /*base style for buttons*/
 .mood-btn {
