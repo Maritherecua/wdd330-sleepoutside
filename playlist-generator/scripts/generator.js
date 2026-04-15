@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     await generatePlaylist(rawMood);
   });
-
+/* Main function to generate playlist based on mood, with error handling and user feedback. */
   async function generatePlaylist(mood) {
     playlistSongs.innerHTML = "<li>Loading songs...</li>";
     const playlistSection = document.getElementById("playlist");
