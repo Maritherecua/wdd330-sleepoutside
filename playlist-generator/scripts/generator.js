@@ -1,7 +1,7 @@
 /* Controls mood selection, playlist generation, and save/share actions. */
 import { fetchSongsByMood } from "./apiClient.js";
 import { renderPlaylist } from "./playlistrender.js";
-import { addFavorite } from "./ls-helpers.js";
+import { addFavorite, saveSelectedMood, getSelectedMood, saveLastPlaylist, getLastPlaylist } from "./ls-helpers.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const moodButtons = document.querySelectorAll(".mood-btn");
@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const shareBtn = document.getElementById("share-btn");
   const actionFeedback = document.getElementById("action-feedback");
 
-  let selectedMood = "happy";
+  let selectedMood = getSelectedMood();
   let currentPlaylistName = "";
 
   document.addEventListener("track:save", (event) => {
@@ -47,6 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
   moodButtons.forEach((button) => {
     button.addEventListener("click", () => {
       selectedMood = button.dataset.mood;
+      saveSelectedMood(selectedMood);
       customMoodInput.style.display =
         selectedMood === "custom" ? "block" : "none";
     });
@@ -54,6 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   moodDropdown.addEventListener("change", () => {
     selectedMood = moodDropdown.value;
+    saveSelectedMood(selectedMood);
     customMoodInput.style.display =
       selectedMood === "custom" ? "block" : "none";
   });
@@ -76,6 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       const songs = await fetchSongsByMood(mood);
       renderPlaylist(songs);
+      saveLastPlaylist(currentPlaylistName, mood, songs);
     } catch (error) {
       playlistSongs.innerHTML =
         "<li>Could not load songs. Please try again.</li>";
@@ -96,6 +99,18 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     showFeedback(wasSaved ? "Saved to Favorites!" : "Playlist is already in Favorites.");
   });
+
+  // Restore last playlist on page load
+  const lastPlaylist = getLastPlaylist();
+  if (lastPlaylist) {
+    const playlistSection = document.getElementById("playlist");
+    const playlistHeading = document.getElementById("playlist-heading");
+    playlistSection.dataset.mood = lastPlaylist.mood;
+    playlistHeading.textContent = lastPlaylist.name;
+    currentPlaylistName = lastPlaylist.name;
+    selectedMood = lastPlaylist.mood;
+    renderPlaylist(lastPlaylist.songs);
+  }
 
   shareBtn.addEventListener("click", async () => {
     if (!currentPlaylistName) {

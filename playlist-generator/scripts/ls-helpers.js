@@ -27,3 +27,33 @@ export function removeFavoriteById(id) {
 export function clearFavorites() {
     localStorage.removeItem(FAVORITES_KEY);
 }
+
+/* Selected mood persistence */
+const MOOD_KEY = "selectedMood";
+
+export function saveSelectedMood(mood) {
+    localStorage.setItem(MOOD_KEY, mood);
+}
+
+export function getSelectedMood() {
+    return localStorage.getItem(MOOD_KEY) || "happy";
+}
+
+/* Last generated playlist persistence */
+const LAST_PLAYLIST_KEY = "lastPlaylist";
+
+export function saveLastPlaylist(name, mood, songs) {
+    localStorage.setItem(
+        LAST_PLAYLIST_KEY,
+        JSON.stringify({ name, mood, songs, savedAt: new Date().toISOString() })
+    );
+}
+
+export function getLastPlaylist() {
+    try {
+        const data = localStorage.getItem(LAST_PLAYLIST_KEY);
+        return data ? JSON.parse(data) : null;
+    } catch {
+        return null;
+    }
+}
