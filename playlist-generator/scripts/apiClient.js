@@ -36,6 +36,16 @@ const FALLBACK_PLAYLISTS = {
   ],
 };
 
+const GENERIC_HITS_PLAYLIST = [
+  { title: "Blinding Lights", artist: "The Weeknd" },
+  { title: "Levitating", artist: "Dua Lipa" },
+  { title: "Shake It Off", artist: "Taylor Swift" },
+  { title: "Uptown Funk", artist: "Mark Ronson ft. Bruno Mars" },
+  { title: "Firework", artist: "Katy Perry" },
+  { title: "Happy", artist: "Pharrell Williams" },
+  { title: "Good 4 U", artist: "Olivia Rodrigo" },
+];
+
 function normalizeMood(mood) {
   const value = (mood || "").trim().toLowerCase();
   return value || "happy";
@@ -57,6 +67,42 @@ function getFallbackSongs(mood) {
     album: null,
     genre: null,
   }));
+}
+
+function getGenericHitsSongs() {
+  return GENERIC_HITS_PLAYLIST.map((song) => ({
+    ...song,
+    thumbnail: null,
+    album: "Hits Collection",
+    genre: "Pop",
+  }));
+}
+
+function toSongKey(song) {
+  return `${song.title || ""}-${song.artist || ""}`.trim().toLowerCase();
+}
+
+function mergeSongsWithFallbacks(primarySongs, mood, limit) {
+  const mergedSongs = [];
+  const seenSongs = new Set();
+
+  [...primarySongs, ...getFallbackSongs(mood), ...getGenericHitsSongs()].forEach(
+    (song) => {
+      if (!song?.title || !song?.artist || mergedSongs.length >= limit) {
+        return;
+      }
+
+      const key = toSongKey(song);
+      if (seenSongs.has(key)) {
+        return;
+      }
+
+      seenSongs.add(key);
+      mergedSongs.push(song);
+    }
+  );
+
+  return mergedSongs;
 }
 
 async function fetchTrackDetails(title, artist) {
@@ -97,17 +143,19 @@ export async function fetchSongsByMood(mood, limit = 10) {
     }
 
     const data = await response.json();
-    const songs = (data.results || []).map((item) => ({
-      id: item.trackId || `${item.trackName}-${item.artistName}`,
-      title: item.trackName,
-      artist: item.artistName,
-      album: item.collectionName || null,
-      genre: item.primaryGenreName || null,
-      thumbnail: item.artworkUrl100 || null,
-    }));
+    const songs = (data.results || [])
+      .map((item) => ({
+        id: item.trackId || `${item.trackName}-${item.artistName}`,
+        title: item.trackName,
+        artist: item.artistName,
+        album: item.collectionName || null,
+        genre: item.primaryGenreName || null,
+        thumbnail: item.artworkUrl100 || null,
+      }))
+      .filter((song) => song.title && song.artist);
 
     if (songs.length === 0) {
-      return getFallbackSongs(mood);
+      return mergeSongsWithFallbacks([], mood, limit);
     }
 
     const enrichedSongs = await Promise.all(
@@ -122,8 +170,8 @@ export async function fetchSongsByMood(mood, limit = 10) {
       })
     );
 
-    return enrichedSongs;
+    return mergeSongsWithFallbacks(enrichedSongs, mood, limit);
   } catch (error) {
-    return getFallbackSongs(mood);
+    return mergeSongsWithFallbacks([], mood, limit);
   }
 }
