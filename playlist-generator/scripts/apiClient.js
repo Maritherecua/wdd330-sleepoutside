@@ -1,3 +1,4 @@
+/* apiClient.js - Handles all API interactions for fetching songs based on mood. It includes functions to fetch songs from the iTunes API, enrich them with TheAudioDB, and provide fallback songs when necessary. */
 const FALLBACK_PLAYLISTS = {
   happy: [
     { title: "Walking on Sunshine", artist: "Katrina and the Waves" },
@@ -50,7 +51,7 @@ function normalizeMood(mood) {
   const value = (mood || "").trim().toLowerCase();
   return value || "happy";
 }
-
+/* Utility function to get fallback songs based on mood. It returns a simplified song object with only title and artist, and fills in missing fields with null. If the mood is not recognized, it defaults to the "happy" playlist. */
 function getFallbackSongs(mood) {
   const key = normalizeMood(mood);
   if (FALLBACK_PLAYLISTS[key]) {
@@ -81,7 +82,7 @@ function getGenericHitsSongs() {
 function toSongKey(song) {
   return `${song.title || ""}-${song.artist || ""}`.trim().toLowerCase();
 }
-
+/* Utility function to merge primary API results with fallback songs, ensuring no duplicates and respecting the limit. It prioritizes API results but fills in with fallbacks as needed. */
 function mergeSongsWithFallbacks(primarySongs, mood, limit) {
   const mergedSongs = [];
   const seenSongs = new Set();
@@ -104,12 +105,12 @@ function mergeSongsWithFallbacks(primarySongs, mood, limit) {
 
   return mergedSongs;
 }
-
+/* Fetch additional track details from TheAudioDB to enrich the song data. This is used as a secondary source to fill in missing information like album, genre, and thumbnail. */
 async function fetchTrackDetails(title, artist) {
   const queryArtist = encodeURIComponent(artist || "");
   const queryTitle = encodeURIComponent(title || "");
   const endpoint = `https://theaudiodb.com/api/v1/json/2/searchtrack.php?s=${queryArtist}&t=${queryTitle}`;
-
+/* TheAudioDB can be unreliable, so we wrap this in a try-catch and return null on failure. We also handle cases where the API returns no results or missing fields gracefully. */
   try {
     const response = await fetch(endpoint);
     if (!response.ok) {
@@ -132,7 +133,7 @@ async function fetchTrackDetails(title, artist) {
     return null;
   }
 }
-
+/* Main function to fetch songs based on mood, with error handling and fallback logic. It first tries the iTunes API, then enriches results with TheAudioDB, and finally merges with fallback songs to ensure a full playlist. */
 export async function fetchSongsByMood(mood, limit = 10) {
   const query = encodeURIComponent(normalizeMood(mood));
   const endpoint = `https://itunes.apple.com/search?term=${query}&media=music&entity=song&limit=${limit}`;
@@ -173,7 +174,7 @@ export async function fetchSongsByMood(mood, limit = 10) {
         };
       })
     );
-
+/* Merge API results with fallback songs, ensuring no duplicates and respecting the limit. */
     return mergeSongsWithFallbacks(enrichedSongs, mood, limit);
   } catch (error) {
     console.error(`[fetchSongsByMood] API request failed for mood "${mood}":`, error);
