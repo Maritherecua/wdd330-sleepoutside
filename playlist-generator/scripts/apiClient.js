@@ -127,7 +127,8 @@ async function fetchTrackDetails(title, artist) {
       genre: match.strGenre || null,
       thumbnail: match.strTrackThumb || match.strAlbumThumb || null,
     };
-  } catch {
+  } catch (error) {
+    console.error(`[fetchTrackDetails] Failed for "${title}" by "${artist}":`, error);
     return null;
   }
 }
@@ -175,6 +176,7 @@ export async function fetchSongsByMood(mood, limit = 10) {
 
     return mergeSongsWithFallbacks(enrichedSongs, mood, limit);
   } catch (error) {
+    console.error(`[fetchSongsByMood] API request failed for mood "${mood}":`, error);
     return mergeSongsWithFallbacks([], mood, limit);
   }
 }

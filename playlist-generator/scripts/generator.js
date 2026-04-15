@@ -61,9 +61,13 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   generateButton.addEventListener("click", async () => {
-    const mood =
-      selectedMood === "custom" ? customMoodInput.value : selectedMood;
-    await generatePlaylist(mood);
+    const rawMood = selectedMood === "custom" ? customMoodInput.value.trim() : selectedMood;
+    if (!rawMood) {
+      showFeedback("Please enter a custom mood before generating.");
+      customMoodInput.focus();
+      return;
+    }
+    await generatePlaylist(rawMood);
   });
 
   async function generatePlaylist(mood) {
@@ -80,6 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
       renderPlaylist(songs);
       saveLastPlaylist(currentPlaylistName, mood, songs);
     } catch (error) {
+      console.error(`[generatePlaylist] Failed to generate playlist for mood "${mood}":`, error);
       playlistSongs.innerHTML =
         "<li>Could not load songs. Please try again.</li>";
     }
