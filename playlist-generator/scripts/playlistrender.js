@@ -1,6 +1,14 @@
 /* Playlist Render Module
    This module handles rendering the playlist in the DOM.
 */
+
+function formatDuration(seconds) {
+  if (!seconds) return null;
+  const m = Math.floor(seconds / 60);
+  const s = String(seconds % 60).padStart(2, "0");
+  return `${m}:${s}`;
+}
+
 export function renderPlaylist(songs) {
   const playlistSongs = document.getElementById("playlist-songs");
   const template = document.getElementById("tracklist-card-template");
@@ -19,7 +27,14 @@ export function renderPlaylist(songs) {
 
     card.querySelector(".track-title").textContent = song.title;
     card.querySelector(".track-artist").textContent = song.artist;
-    meta.textContent = [song.album, song.genre].filter(Boolean).join(" • ");
+
+    const metaParts = [
+      song.album,
+      song.genre,
+      song.releaseDate ? song.releaseDate.slice(0, 4) : null,
+      formatDuration(song.duration),
+    ].filter(Boolean);
+    meta.textContent = metaParts.join(" • ");
 
     saveButton.addEventListener("click", () => {
       const customEvent = new CustomEvent("track:save", {
@@ -37,6 +52,21 @@ export function renderPlaylist(songs) {
       image.alt = `${song.title} album artwork`;
     } else {
       image.remove();
+    }
+
+    // Add audio preview player if available
+    if (song.previewUrl) {
+      const audio = document.createElement("audio");
+      audio.controls = true;
+      audio.src = song.previewUrl;
+      audio.setAttribute("aria-label", `Preview of ${song.title}`);
+      audio.className = "track-preview";
+      const li = card.querySelector("li") || card.firstElementChild;
+      if (li) {
+        li.appendChild(audio);
+      } else {
+        card.appendChild(audio);
+      }
     }
 
     playlistSongs.appendChild(card);

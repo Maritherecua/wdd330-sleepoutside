@@ -151,6 +151,9 @@ export async function fetchSongsByMood(mood, limit = 10) {
         album: item.collectionName || null,
         genre: item.primaryGenreName || null,
         thumbnail: item.artworkUrl100 || null,
+        previewUrl: item.previewUrl || null,
+        releaseDate: item.releaseDate ? item.releaseDate.slice(0, 10) : null,
+        duration: item.trackTimeMillis ? Math.round(item.trackTimeMillis / 1000) : null,
       }))
       .filter((song) => song.title && song.artist);
 

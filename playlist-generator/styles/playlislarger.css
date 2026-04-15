@@ -99,6 +99,13 @@ header {
   cursor: pointer;
 }
 
+.track-preview {
+  width: 100%;
+  margin-top: 0.5rem;
+  height: 32px;
+  grid-column: 1 / -1;
+}
+
 .track-save-btn:hover {
   background: rgba(255, 255, 255, 0.9);
 }
