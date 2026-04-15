@@ -2,7 +2,7 @@
 import { fetchSongsByMood } from "./apiClient.js";
 import { renderPlaylist } from "./playlistrender.js";
 import { addFavorite, saveSelectedMood, getSelectedMood, saveLastPlaylist, getLastPlaylist } from "./ls-helpers.js";
-
+/* Function that will be called when the user clicks "Generate Playlist". It fetches songs based on the selected mood and renders them. */
 document.addEventListener("DOMContentLoaded", () => {
   const moodButtons = document.querySelectorAll(".mood-btn");
   const moodDropdown = document.getElementById("mood-dropdown");
@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
     actionFeedback.textContent = msg;
     setTimeout(() => { actionFeedback.textContent = ""; }, 3000);
   }
-
+/* Utility to manage mood selection */
   moodButtons.forEach((button) => {
     button.addEventListener("click", () => {
       selectedMood = button.dataset.mood;
@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
     playlistSection.dataset.mood = mood;
     playlistHeading.textContent = `Your ${moodLabel} Playlist`;
     currentPlaylistName = `Your ${moodLabel} Playlist`;
-
+/* Fetch songs and render playlist, with error handling. */
     try {
       const songs = await fetchSongsByMood(mood);
       renderPlaylist(songs);
@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "<li>Could not load songs. Please try again.</li>";
     }
   }
-
+/* Save the current playlist to favorites when the user clicks the "Save to Favorites" button. */
   saveFavoritesBtn.addEventListener("click", () => {
     if (!currentPlaylistName) {
       showFeedback("Generate a playlist first!");
@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
     selectedMood = lastPlaylist.mood;
     renderPlaylist(lastPlaylist.songs);
   }
-
+/* Share the current playlist using the Web Share API or fallback to copying the URL. */
   shareBtn.addEventListener("click", async () => {
     if (!currentPlaylistName) {
       showFeedback("Generate a playlist first!");
