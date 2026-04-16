@@ -5,6 +5,7 @@ import { addFavorite, saveSelectedMood, getSelectedMood, saveLastPlaylist, getLa
 /* Function that will be called when the user clicks "Generate Playlist". It fetches songs based on the selected mood and renders them. */
 document.addEventListener("DOMContentLoaded", () => {
   const moodButtons = document.querySelectorAll(".mood-btn");
+  const moodCards = document.querySelectorAll(".mood-card");
   const moodDropdown = document.getElementById("mood-dropdown");
   const generateButton = document.getElementById("generate-playlist");
   const playlistSongs = document.getElementById("playlist-songs");
@@ -43,13 +44,28 @@ document.addEventListener("DOMContentLoaded", () => {
     actionFeedback.textContent = msg;
     setTimeout(() => { actionFeedback.textContent = ""; }, 3000);
   }
-/* Utility to manage mood selection */
+  /* Utility to manage mood selection */
   moodButtons.forEach((button) => {
     button.addEventListener("click", () => {
       selectedMood = button.dataset.mood;
       saveSelectedMood(selectedMood);
       customMoodInput.style.display =
         selectedMood === "custom" ? "block" : "none";
+    });
+  });
+
+  moodCards.forEach((card) => {
+    card.addEventListener("click", async () => {
+      const mood = card.dataset.mood;
+      if (!mood) {
+        return;
+      }
+
+      selectedMood = mood;
+      saveSelectedMood(selectedMood);
+      moodDropdown.value = selectedMood;
+      customMoodInput.style.display = "none";
+      await generatePlaylist(selectedMood);
     });
   });
 
@@ -69,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     await generatePlaylist(rawMood);
   });
-/* Main function to generate playlist based on mood, with error handling and user feedback. */
+  /* Main function to generate playlist based on mood, with error handling and user feedback. */
   async function generatePlaylist(mood) {
     playlistSongs.innerHTML = "<li>Loading songs...</li>";
     const playlistSection = document.getElementById("playlist");
@@ -78,7 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
     playlistSection.dataset.mood = mood;
     playlistHeading.textContent = `Your ${moodLabel} Playlist`;
     currentPlaylistName = `Your ${moodLabel} Playlist`;
-/* Fetch songs and render playlist, with error handling. */
+    /* Fetch songs and render playlist, with error handling. */
     try {
       const songs = await fetchSongsByMood(mood);
       renderPlaylist(songs);
@@ -89,7 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "<li>Could not load songs. Please try again.</li>";
     }
   }
-/* Save the current playlist to favorites when the user clicks the "Save to Favorites" button. */
+  /* Save the current playlist to favorites when the user clicks the "Save to Favorites" button. */
   saveFavoritesBtn.addEventListener("click", () => {
     if (!currentPlaylistName) {
       showFeedback("Generate a playlist first!");
@@ -116,7 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
     selectedMood = lastPlaylist.mood;
     renderPlaylist(lastPlaylist.songs);
   }
-/* Share the current playlist using the Web Share API or fallback to copying the URL. */
+  /* Share the current playlist using the Web Share API or fallback to copying the URL. */
   shareBtn.addEventListener("click", async () => {
     if (!currentPlaylistName) {
       showFeedback("Generate a playlist first!");
