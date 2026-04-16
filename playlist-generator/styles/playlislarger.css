@@ -360,6 +360,35 @@ header {
   transform: scale(1.05);
 }
 
+/* Center the secondary mood controls directly under the mood cards. */
+#mood-selection>h2,
+#mood-selection>p,
+#mood-selection>label {
+  text-align: center;
+}
+
+#mood-selection>.mood-btn,
+#mood-selection>#custom-mood,
+#mood-selection>#mood-dropdown,
+#mood-selection>#generate-playlist {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#mood-selection>.mood-btn {
+  margin-bottom: 0.65rem;
+}
+
+#mood-selection>#custom-mood,
+#mood-selection>#mood-dropdown {
+  width: min(320px, 90vw);
+}
+
+#mood-selection>#generate-playlist {
+  margin-top: 0.75rem;
+}
+
 /*.mood-card.energetic {
   background-color: #ff6f61;
 }
