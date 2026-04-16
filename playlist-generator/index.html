@@ -50,26 +50,30 @@
           <div class="mood-card productive" data-mood="productive">Productive</div>
         </div>
       </div>
-      <h2>Select Your Mood</h2>
-      <button class="mood-btn" data-mood="happy">😊 Happy</button>
-      <button class="mood-btn" data-mood="sad">😢 Sad</button>
-      <button class="mood-btn" data-mood="energetic">⚡ Energetic</button>
-      <button class="mood-btn" data-mood="relaxed">😌 Relaxed</button>
-      <button class="mood-btn" data-mood="productive">💼 Productive</button>
-      <button class="mood-btn" data-mood="custom">🎵 Custom</button>
-      <!--user input for custom mood-->
-      <input type="text" id="custom-mood" placeholder="Enter your mood" />
-      <p>Or select your mood from the dropdown:</p>
-      <label for="mood-dropdown">Mood</label>
-      <select id="mood-dropdown">
-        <option value="happy">😊 Happy</option>
-        <option value="sad">😢 Sad</option>
-        <option value="energetic">⚡ Energetic</option>
-        <option value="relaxed">😌 Relaxed</option>
-        <option value="productive">💼 Productive</option>
-        <option value="custom">🎵 Custom</option>
-      </select>
-      <button id="generate-playlist">Generate Playlist</button>
+      <div class="mood-controls">
+        <h2>Select Your Mood</h2>
+        <div class="mood-button-group">
+          <button class="mood-btn" data-mood="happy">😊 Happy</button>
+          <button class="mood-btn" data-mood="sad">😢 Sad</button>
+          <button class="mood-btn" data-mood="energetic">⚡ Energetic</button>
+          <button class="mood-btn" data-mood="relaxed">😌 Relaxed</button>
+          <button class="mood-btn" data-mood="productive">💼 Productive</button>
+          <button class="mood-btn" data-mood="custom">🎵 Custom</button>
+        </div>
+        <!--user input for custom mood-->
+        <input type="text" id="custom-mood" placeholder="Enter your mood" />
+        <p>Or select your mood from the dropdown:</p>
+        <label for="mood-dropdown">Mood</label>
+        <select id="mood-dropdown">
+          <option value="happy">😊 Happy</option>
+          <option value="sad">😢 Sad</option>
+          <option value="energetic">⚡ Energetic</option>
+          <option value="relaxed">😌 Relaxed</option>
+          <option value="productive">💼 Productive</option>
+          <option value="custom">🎵 Custom</option>
+        </select>
+        <button id="generate-playlist">Generate Playlist</button>
+      </div>
     </section>
     <section id="playlist">
       <h2 id="playlist-heading">Your Playlist</h2>
