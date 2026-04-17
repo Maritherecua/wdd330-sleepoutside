@@ -420,6 +420,12 @@ header {
     gap: 0.6rem;
   }
 }
+.footer-text {
+  text-align: center;
+  font-size: 0.8rem;
+  color: #101010;
+  margin: 1rem 0;
+}
 
 /*.mood-card.energetic {
   background-color: #ff6f61;

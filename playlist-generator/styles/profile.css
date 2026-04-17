@@ -175,3 +175,9 @@ body {
         justify-items: start;
     }
 }
+.footer-text {
+  text-align: center;
+  font-size: 0.8rem;
+  color: #101010;
+  margin: 1rem 0;
+}
